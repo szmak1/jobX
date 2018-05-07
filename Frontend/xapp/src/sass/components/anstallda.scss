@@ -1,0 +1,84 @@
+.Header {
+  grid-area: Header;
+}
+
+.Footer {
+  grid-area: Footer;
+}
+
+.anstallda {
+  grid-area: anstallda;
+  padding-top: 40px;
+}
+
+.wrapThemNow{
+ width: 100%;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr ));
+   grid-gap: 8px;
+    
+}
+.Medarbetare-grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 3fr 1fr;
+  grid-template-areas: 
+    "Header Header Header Header"
+    "anstallda anstallda anstallda anstallda"
+    "Footer Footer Footer Footer";
+}
+
+
+.container2 {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: $black;
+   flex-direction: column;
+
+@extend %v_c;
+
+}
+
+
+// .anstallda {
+//   padding: 24px;
+//   display: grid;
+//   grid-template-columns: 1fr 1fr 1fr 1fr;
+//   grid-template-rows: auto;
+//   grid-template-areas: 
+//     " . anstallda anstallda . "
+//     " . anstallda anstallda . "
+//     " . anstallda anstallda . ";
+// }
+
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    height: 100%;
+    background: white;
+    
+    display: flex;
+   
+    
+
+
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background: #CCCCCC;
+}
+
+/* Add some padding inside the card container */
+.container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: $black;
+}

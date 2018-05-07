@@ -1,0 +1,121 @@
+/**
+ * Typography
+ */
+
+body{
+    line-height: 1;
+}
+
+html {
+    font-size: 16px;
+}
+
+a {
+  color:$black;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    
+  }
+}
+
+h1,h2,h3,h4,h5{
+ 
+    font-family: 'Inter UI';
+
+ 
+   
+    margin: 0;
+}
+h1 {
+    font-size: 48px;
+    letter-spacing: -2px;
+}
+
+h2 {
+    font-size: 32px;   
+    letter-spacing: -1.2px;
+    color:$green;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-size: 24px;   
+    letter-spacing: -0.8px;
+    margin-bottom: 16px;
+}
+
+h4 {
+    font-size: 16px;   
+    letter-spacing: -0.6px; 
+}
+
+h5 {
+    font-size: 14px;   
+    letter-spacing: -0.4px; 
+}
+
+h6 {
+  
+  font-family: 'Inter UI';
+  font-style:  normal;
+  font-weight: 400;
+  
+
+    font-size: 14px;
+    letter-spacing: -0.4px;  
+}
+p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+}
+li{
+    font-size: 16px;
+    line-height: 24px;
+}
+p.large {
+    font-size: 20px;
+    line-height: 25px;
+}
+p.small {
+    font-size: 14px;
+    line-height: 21px;
+}
+p.green{
+    color:$green;
+}
+.mab12{
+    margin-bottom: 12px;
+}
+.mab16{
+    margin-bottom: 16px;
+}
+.mab32{
+    margin-bottom: 32px;
+}
+.mat12{
+    margin-top: 12px;
+}
+.mat16{
+    margin-top: 16px;
+}
+.mat32{
+    margin-top: 32px;
+}
+.pat24{
+    padding-top: 24px;
+}
+.pab48{
+    padding-bottom: 48px;
+}
+.pat48{
+    padding-top: 48px;
+}
+.is_link{
+    cursor: pointer;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+
+}
+
+

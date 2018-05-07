@@ -1,0 +1,20 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+
+	<section>
+		<div class="wrapper">
+		<h1>Project-Planner Uploader</h1>
+		<div class="upload-btn-wrapper">
+			<form action="{{ ajax_url }}"  method="post" enctype="multipart/form-data">
+				<input type="hidden" value="my_user_vote" name="action">
+	  			<button class="btn">Ladda upp XML</button>
+	  			<button class="btn-o">Skicka</button>
+	  			<input type="file" name="myfile" />
+  			</form>
+		</div>
+		</div>
+	</section>
+	
+{% endblock %}
+

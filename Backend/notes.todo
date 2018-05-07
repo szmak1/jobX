@@ -1,0 +1,11 @@
+npm install create-react-app -g
+
+
+
+
+fre 23 feb
+La till wp_insert_post till vecka och project (projectnamn, projectnr och timmar) till post sidan i wordpress.
+Detta händer varje gång man laddar upp cvs filen.
+
+Skippade de första 2 raderna i cvs filen
+

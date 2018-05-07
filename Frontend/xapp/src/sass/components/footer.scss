@@ -1,0 +1,36 @@
+.Footer {
+	background: $black;
+	color: $yellow;
+}
+textarea {
+    overflow: auto;
+    width: 60%;
+    
+    background: none;
+    border: 2px solid $red;
+    color: $yellow;
+   
+}
+.FormNotes {
+	padding-top: 8px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+    
+}
+
+.anteckningar {
+
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+.todo-wrapper h2 {
+  
+  color: white;
+  margin-top: 16px;
+  margin-left: 48px;
+}

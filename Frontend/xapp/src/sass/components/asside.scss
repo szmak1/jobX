@@ -1,0 +1,52 @@
+.Asside {
+	background-color: $red;
+}
+
+.Asside-container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr;
+  grid-template-areas: 
+    "Asside-image Asside-image"
+    "Asside-text Asside-text";
+}
+
+.Asside-image {
+	grid-area: Asside-image;
+}
+
+.Asside-text {
+	grid-area: Asside-text;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+.AssideProjects {
+	padding-bottom: 12px;
+}
+
+.projektHeadline {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	color: $black;
+	background: white;
+	height: 10%;
+	margin-bottom: 16px;
+}
+
+.Avatar {
+    display: block;
+}
+
+.projektHeadline h3 {
+    
+    margin-bottom: 0;
+
+}
+
+
+

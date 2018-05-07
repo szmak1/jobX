@@ -1,0 +1,31 @@
+.Lista-grid {
+	color: white;
+}
+
+.lista-style {
+	background: $green;
+	margin-bottom: 8px;
+	padding: 32px;
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+}
+
+.medarbetare_bild {
+	display:block;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.container2 h4 {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.container2 h3 {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}

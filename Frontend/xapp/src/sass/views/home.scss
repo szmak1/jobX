@@ -1,0 +1,85 @@
+body {
+  background: black;
+  color:#fff;
+}
+
+h1 {
+  text-align: center;
+}
+
+.Header {
+  width: 100%;
+  background: black;
+  color: white;
+  box-sizing: border-box;
+  text-decoration: none;
+  decoration: none; 
+  text-align: center;
+  padding: 8px;
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+.btn:visited {
+  text-decoration: none; 
+  decoration: none;
+  color: white; 
+
+}
+
+.btn {
+  padding-right: 16px;
+}
+
+header {
+
+}
+
+
+.Header {
+  grid-area: Header;
+}
+.Projects {
+  grid-area: Projects;
+}
+.Asside {
+  grid-area: Asside;
+}
+.Footer {
+  grid-area: Footer;
+}
+
+.home-grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 5fr 3fr;
+  grid-template-areas: 
+    "Header Header Header Header"
+    "Asside Projects Projects Projects"
+    "Asside Footer Footer Footer";
+}
+.Avatar {
+  width: 100%;
+
+}
+
+.vecka h5 {
+    text-align: center;
+    margin-top: 8px;
+}
+
+@include bp-small{
+  .home-grid {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "Header"
+      "Projects"
+      "Asside"
+      "Footer";
+  }
+}
