@@ -3,13 +3,13 @@
 }
 
 .lista-style {
-	background: $green;
-	margin-bottom: 8px;
-	padding: 32px;
+	margin-bottom: 16px;
+	padding: 32px 0;
 	width: 100%;
 	height: auto;
 	display: flex;
 	justify-content: center;
+	color: $black;
 }
 
 .medarbetare_bild {
@@ -28,4 +28,10 @@
 .container2 h3 {
 	margin-top: 8px;
 	margin-bottom: 8px;
+}
+
+.List {
+
+    padding-top: 16px;
+
 }

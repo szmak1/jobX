@@ -1,6 +1,7 @@
 .Footer {
 	background: $black;
 	color: $yellow;
+  margin-top: 16px;
 }
 textarea {
     overflow: auto;
@@ -33,4 +34,6 @@ textarea {
   color: white;
   margin-top: 16px;
   margin-left: 48px;
+  text-align: center;
 }
+

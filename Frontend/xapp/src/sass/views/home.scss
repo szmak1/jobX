@@ -1,6 +1,10 @@
 body {
-  background: black;
+  background: $gray-darkest;
   color:#fff;
+  font-size: 20px;
+}
+.wrapper-x {
+  padding: 14px;
 }
 
 h1 {
@@ -17,8 +21,8 @@ h1 {
   text-align: center;
   padding: 8px;
   display: flex;
-    flex-direction: row;
-    justify-content: center;
+  flex-direction: row;
+  justify-content: center;
 
 }
 .btn:visited {
@@ -35,6 +39,9 @@ h1 {
 header {
 
 }
+.tes {
+  width: 250px;
+}
 
 
 .Header {
@@ -48,13 +55,15 @@ header {
 }
 .Footer {
   grid-area: Footer;
+
 }
 
 .home-grid {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 50px 5fr 3fr;
+  grid-template-rows: 100px 5fr 3fr;
+   grid-gap: 20px;
   grid-template-areas: 
     "Header Header Header Header"
     "Asside Projects Projects Projects"

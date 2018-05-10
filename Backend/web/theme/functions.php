@@ -310,29 +310,21 @@ $csv = array();
 // // check there are no errors
 if($_FILES['myfile']['error'] == 0){
 
-
-
     $name = $_FILES['myfile']['name'];
-
     $ext = strtolower(end(explode('.', $_FILES['myfile']['name'])));
     $type = $_FILES['myfile']['type'];
     $tmpName = $_FILES['myfile']['tmp_name'];
 
     // check the file is a csv
     if($ext === 'csv'){
-
-    
-
         if(($handle = fopen($tmpName, 'r')) !== FALSE) {
         		
             // necessary if a large csv file
             set_time_limit(0);
 
             $row = 0;
-
 			$firstline = 0;
 			$data2 = fgetcsv($handle, 1000, ';');
-
 			$rows = 0;
 			$medarbetare_list = ""; // en arry av alla medarbetare och vilken kolum dem tillhör
 			while(($data = fgetcsv($handle, 1000, ';')) !== FALSE) {
@@ -342,39 +334,15 @@ if($_FILES['myfile']['error'] == 0){
                      break;
 				}
 				continue;
-
 			}
-
             while(($data = fgetcsv($handle, 1000, ';')) !== FALSE) {
-
-
-
-				// if ($firstline <= 1) {
-				// 	$firstline++;
-				// 	continue;
-				// }
-				// $firstline++;
-
-
-				// if ($firstline == 3) {
-				// 	$firstline++;
-
-				// 	continue;
-				// }
-                // number of fields in the csv
-               //  $col_count = count($data[2]);
-               //  $antalPersoner = ($col_count - 5) / 5;
-
              	
                 if ( $data[0] == "Total" ) {
                 	$is_last_line = true;
                 }
-             
                 if ($is_last_line) {
                 	break;
                 }
-
-
                 if ($data[0] == "NB") {
                 	$projekt_nr_remember = "NB";
                 	
@@ -384,63 +352,42 @@ if($_FILES['myfile']['error'] == 0){
                 }
 
                 if ($data[1] == "" && $data[2] == "" && $data[3] == "" ) {
-                	
                 	continue;
                 }
-                
-	             
- if ($data[0] !== "" && $data[1] == "") {
+ 				if ($data[0] !== "" && $data[1] == "") {
 	              	$data[1] = $data[0];
 	              }
-                if (  $data[1] == ""  )   {
-
+                if (  $data[1] == ""  ){
                 	$data[1] = $projekt_name_remember;
-                	
 
                 }else{
                 	$projekt_name_remember =  $data[1];
-              
-                	//$projekt_status_remember = $data[3];
                 }
-                if (   $data[2] == "" )   {
-
-                	
+                if ($data[2] == ""){
                 	$data[2] = $projekt_nr_remember;
-                	//$data[3] = $projekt_status_remember;
 
                 }else{
-                	
                 	$projekt_nr_remember =  $data[2];
-                	//$projekt_status_remember = $data[3];
                 }
-
-               
 
                 $tim = array();
                 $tim[$row] = array(); 
 
 				$project_array[$row] =  array(
-             		'project_namn' => $data[1],
+             		'project_namn' =>  substr($data[1], 0, -4),
              		'project_nr' => $data[2],
              		'project_status' => $data[3],
              		'timmar' => $tim,
 
              	);
-
                  // number of fields in the csv
 				// data = row
                  $col_count = count($data);
                  $antalPersoner = ($col_count - 5) / 5;
 
-             
-
                 for ($i=5; $i < count($data); $i++) {
-
                 	
                 	if ($data[$i] !== "") {
-                	
-
-
                 		if ($i < 14 ) {
                 		
                 			$project_array[$row]['timmar'][$row]['m'][] =  array( 
@@ -474,19 +421,9 @@ if($_FILES['myfile']['error'] == 0){
                 				"person" =>  $medarbetare_list[$i] ,
 								"timmar" => $data[$i]
                 			 );
-                			
-                		}
-
-                		 
+                		} 
                 	}
-                	
-                	# code...
                 }
-
-          
-             
-     
-                // inc the row
                 $row++;
             }
             fclose($handle);
@@ -494,7 +431,7 @@ if($_FILES['myfile']['error'] == 0){
     }
 }
 
-   print_r($project_array);
+
 
 $my_post = array(
   'post_title'    => wp_strip_all_tags( $vecka ),
@@ -510,43 +447,128 @@ $value = update_field( 'vecka', $vecka, $post_id );
 
 // save a repeater field value
 $field_key = "field_5a86df487c0d4";
-// $projekt2 = array(
-// 	array(
-// 		"project_namn"	=> "Foo",
-// 		"project_nr"	=> "Bar",
-// 		"timmar"	=> array( array( 
-// 				"m" =>  array( array( 
-// 						"person" =>  "PERSON" ,
-// 						"timmar" => "1"
-// 				)),
-// 				"t" =>  array( array( 
-// 						"person" =>  "PERSON" ,
-// 						"timmar" => "2"
-// 				)),
-// 				"o" =>  array( array( 
-// 						"person" =>  "PERSON" ,
-// 						"timmar" => "3"
-// 				)),
-// 				"th" =>  array( array( 
-// 						"person" =>  "PERSON" ,
-// 						"timmar" => "4"
-// 				)),
-// 				"f" =>  array( array( 
-// 						"person" =>  "PERSON" ,
-// 						"timmar" => "5"
-// 				)),
-// 			))		
-// 	)
-// );
 $projekt = update_field( $field_key, $project_array , $post_id );
 
+//Get 2 person for Köksvecka
+$options = get_fields('option');
+$alla = $options['medarbetare'];
+$done = $options["done"];
+$done = json_decode($done,true);
+$other = [];
+//$current = $options["current"];
+for ($i=0; $i < count($alla); $i++) {
 
+	if (!in_array($alla[$i], $done)) {
+		$other[] = $alla[$i];
+	}
+ }
 
+shuffle($other);
+
+ if (count($other) == 1 && count($other) !== 0){
+ 	$current = $other[0]['medarbetare_name'] . ' &  ' . $done[0]['medarbetare_name'];
+ 	$_done = $done[0];
  
+ 	unset($done);
+ 	$done[] = $other[0] ;
+ 	$done[] = $_done;
+
+}
+ elseif (count($other) !== 0) {
+
+ 	$current = $other[0]['medarbetare_name'] . ' & ' . $other[1]['medarbetare_name'];
+ 	$done[] = $other[0];
+ 	$done[] = $other[1];
+ }
+
+//save current
+//$current
+update_field('current', json_encode($current) , 'option');
+//save Done
+//$done
+update_field('done', json_encode($done) , 'option');
 
 
  die;
 }
+
+
+// Return all todos for 
+function get_all_todos($data) {
+	
+	//print_r($data['slug']);
+	//$all_post_ids = Timber::get_post();
+	$arry =  [];
+	$all_post_ids = get_field( "todos", $data['id'] );
+
+	for ($i=0; $i < count($all_post_ids) ; $i++) { 
+
+		if ($all_post_ids[$i]['id'] == $data['slug']) {
+			$all_post_ids[$i]['todos'] = $all_post_ids[$i]['todos'];
+			$arry= $all_post_ids[$i];
+
+
+		}
+	}
+
+	if (empty( $arry)) {
+		$arry = array('id' => $data['slug'] , 'todos' => ""  );
+	}
+
+    return $arry;
+}
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'todo/v1', '/get-all-todos/(?P<id>\d+)/(?P<slug>\w+)', array(
+		'methods' => 'GET',
+		'callback' => 'get_all_todos',
+	) );
+} );
+
+
+// save todos
+function save_todos( WP_REST_Request $request) {
+
+	$body = $request->get_body();
+	$body = json_decode($body,true);
+	$todo = $body['todo'];
+
+	$arry =  [];
+	$all_post_ids = get_field( "todos", $request['id'] );
+
+	
+
+
+		for ($i=0; $i < count($all_post_ids) ; $i++) { 
+			
+
+			 if ($all_post_ids[$i]['id'] == $request['slug']) {
+			 	$all_post_ids[$i]['todos'] = $todo;
+			 	$arry = array('done');
+			 }
+		}
+
+
+	if (empty( $arry ) ) {
+		$all_post_ids[]= array('id' =>  $request['slug'], 'todos' => $todo);
+	}
+	
+
+	update_field('todos', $all_post_ids, $request['id']);
+
+	return $all_post_ids;
+	
+
+	//update_sub_field( $selector, $value, $post_id );
+	
+}
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'todo/v1', '/save/(?P<id>\d+)/(?P<slug>\w+)', array(
+		'methods' => 'POST',
+		'callback' => 'save_todos',
+	) );
+} );
+
+
 
 /*
 	

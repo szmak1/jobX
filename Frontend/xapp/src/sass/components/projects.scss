@@ -1,5 +1,5 @@
 .Projects {
-	background: $green;
+	background: $black;
 	color: black;
 
 	padding: 24px;
@@ -8,33 +8,35 @@
 
 .mandag {
   grid-area: mandag;
-  background: $yellow;
-  border-radius: 12px;
+  
+
 }
 .tisdag {
   grid-area: tisdag;
-  background: $yellow;
-  border-radius: 12px;
+
+
 }
 .onsdag {
   grid-area: onsdag;
-  background: $yellow;
-  border-radius: 12px;
+  
+
 }
 .torsdag {
   grid-area: torsdag;
-  background: $yellow;
-  border-radius: 12px;
+ 
+ 
 }
 .fredag {
   grid-area: fredag;
-  background: $yellow;
-  border-radius: 12px;
+  
+
 }
 .vecka {
   display: grid;
   grid-gap: 20px;
   height: 100%;
+  grid-gap: 20px;
+
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas: 
@@ -46,6 +48,7 @@
   .vecka {
     display: grid;
     grid-gap: 20px;
+
     height: 100%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -72,13 +75,14 @@
 }
 
 .veckaPD {
-	padding: 8px;
 	
-	color: $green;
+  // border: 1px solid $gray-darkest;	
+  color: $white;
+
 }
 
 .veckaPD h4 {
-	
+
 	margin: 8px;
 	padding-top: 8px;
 	padding-bottom: 8px;
@@ -86,8 +90,8 @@
 }
 
 .cvsInformation {
-	background: $green;
-	border-radius: 8px;
+	background: $yellow;
+	
 	margin: 16px 4px 0 4px;
-	color: $yellow;
+	color: $black;
 }

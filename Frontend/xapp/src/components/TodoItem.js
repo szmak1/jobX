@@ -11,7 +11,7 @@ class TodoItem extends Component {
 
 	render() {
 		return (
-			<div className={"TodoItem"}>
+			<div className={"TodoItem" + this.props.id }>
 				<button
 					className="removeTodo"
 					onClick={e => this.removeTodo(this.props.id)}

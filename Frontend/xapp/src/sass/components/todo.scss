@@ -1,8 +1,6 @@
 .TodoInput {
   margin: 20px auto 20px auto;
   width: 80%;
-  
-  
   padding: 20px;
 }
 
@@ -11,21 +9,30 @@
   box-shadow: none;
   border-width: 2px;
   border-radius: 3px;
-  
   padding: 8px;
 }
 
 .btn-primary {
-  color: $red;
-  border-color: $red;
+  color: $black;
+  border: solid 1px #e0d400;
   background-color: transparent;
+  width: 107px;
+  height: 37px;
+  background-color: #fff200;
+}
+
+.btn-primary:hover {
+  width: 107px;
+  height: 37px;
+  background-color: #e0d400;
+  border: solid 1px #c7bc00;
 }
 
 input {
   width: 70%;
   border: none;
-  border-top: 2px solid $red;
-  border-bottom: 2px solid $red;
+  border-top: 2px solid $yellow;
+  border-bottom: 2px solid $yellow;
   margin-right: 10px;
   padding: 5px;
   line-height: 17px;
@@ -36,15 +43,15 @@ input {
 input:focus {
   outline: none;
   border: none;
-  border-top: 3px solid $red;
-  border-bottom: 3px solid $red;
+  border-top: 3px solid #e0d400;
+  border-bottom: 3px solid #e0d400;
 }
 
 
 .todoWrapper {
-  border-bottom: 1px solid #efefef;
+  
+background: $gray-darkest;
 
-  margin-bottom: 10px;
   
 }
 .removeTodo {
@@ -56,7 +63,9 @@ input:focus {
   border-radius: 3px;
   border-style: solid;
   padding: 8px;
-  color: $red;
-  border-color: $red;
+  color: $yellow;
+  border-color: $yellow;
   background-color: transparent;
+ width: 107px;
+  height: 37px;
 }

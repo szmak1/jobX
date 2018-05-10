@@ -1,5 +1,5 @@
 .Asside {
-	background-color: $red;
+	background-color: $yellow;
 }
 
 .Asside-container {
@@ -18,7 +18,7 @@
 
 .Asside-text {
 	grid-area: Asside-text;
-	color: white;
+	color: $black;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -32,8 +32,8 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	color: $black;
-	background: white;
+	color: $white;
+	background: $black;
 	height: 10%;
 	margin-bottom: 16px;
 }

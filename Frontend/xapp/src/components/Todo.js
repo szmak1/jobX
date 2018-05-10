@@ -8,11 +8,22 @@ class Todo extends Component {
 		super(props);
 		this.state = {
 			todos: [],
-			nextId: 3
+			nextId: Math.round(Math.floor((Math.random() * 100) + 1) ),
 		};
 
 		this.addTodo = this.addTodo.bind(this);
 		this.removeTodo = this.removeTodo.bind(this);
+		this.updateTodo = this.updateTodo.bind(this);
+	}
+	componentDidMount() {
+
+		axios
+			.get(`http://xapp.tst/wp-json/todo/v1/get-all-todos/`+ this.props.post_key + '/' +  this.props.person_key)
+			.then(res => {
+				console.log('res',res);
+				// const persons = res.data;
+				this.setState({ todos: res.data.todos });
+			});
 	}
 
 	addTodo(todoText) {
@@ -22,41 +33,34 @@ class Todo extends Component {
 			todos: todos,
 			nextId: ++this.state.nextId
 		});
-		const params = { 
-			meta: {
-				etest: ['something']
-			},
-			acf: {
-				etest: 'something'
-			},
-			 "field_5ae9d28ff8997['etest']" :"ehsan"
-			
+		this.updateTodo();
+		console.log('todos1',this.state.todos);
 
-
-
-		};
-		axios
-			.put(`http://xapp.tst/wp-json/wp/v2/posts/`+ this.props.post_key , params, {
-				headers: {
-					"content-type": "application/json",
-					"Authorization":'Basic ' + btoa( 'super:admin' )
-				}
-			})
-			.then(res => {
-				console.log(res);
-				// const persons = res.data;
-				this.setState({ posts: res.data });
-			});
-		//json-to-string
 	}
 
 	removeTodo(id) {
 		this.setState({
 			todos: this.state.todos.filter((todo, index) => todo.id !== id)
 		});
+		this.updateTodo();
+	}
+	updateTodo(){
+		const params = { 
+			todo: this.state.todos
+
+		};
+		console.log('todos',this.state.todos);
+		axios
+			.post(`http://xapp.tst/wp-json/todo/v1/save/`+ this.props.post_key + '/' +  this.props.person_key , params)
+			.then(res => {
+				
+				// const persons = res.data;
+				//this.setState({ posts: res.data });
+			});
+
 	}
 	render() {
-		console.log()
+		
 		return (
 			<div className="todo-wrapper">
 				<h2>Todo</h2>

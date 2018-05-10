@@ -15,6 +15,7 @@ class Home extends Component {
 			loading: false,
 			posts: []
 		};
+
 	}
 	componentDidMount() {
 		axios.get(`http://xapp.tst/wp-json/wp/v2/posts`).then(res => {
@@ -30,6 +31,7 @@ class Home extends Component {
 	}
 
 	render() {
+	
 		let that = this;
 		return (
 			<div className="Lista-grid">

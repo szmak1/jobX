@@ -1,9 +1,23 @@
 /* Variables
  ========================================================================== */
-$black: #18121E;
+
 $green: #233237;
 $red: #984B43;
-$yellow: #EAC67A;
+
+// Primary colour palette //
+
+$black: #000000;
+$yellow: #FFF200;
+$white: #ffffff;
+
+// Secondary colour palette //
+
+$gray-darkest: #333333;
+$gray-dark: #666666;
+$gray-medium: #999999;
+$gray-light: #CCCCCC;
+
+
 
 
 $max-width: 768px;
@@ -85,4 +99,20 @@ $transition: .35s all cubic-bezier(.455,.03,.515,.955);
       margin: 9px 0 5px 1rem;
   }
 */
+
+$colors: red, orange, $yellow, green, blue, purple;
+
+@for $i from 1 through length($colors) {
+  .lista-style:nth-child(#{length($colors)}n+#{$i}) {
+    background: lighten(nth($colors, $i), 20%);
+  }
+}
+
+$hover: green, gray, blue, purple, $yellow, red, orange; 
+
+@for $i from 1 through length($hover) {
+  .lista-style:hover:nth-child(#{length($hover)}n+#{$i}) {
+    background: lighten(nth($hover, $i), 20%);
+  }
+}
 
