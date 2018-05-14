@@ -374,7 +374,7 @@ if($_FILES['myfile']['error'] == 0){
                 $tim[$row] = array(); 
 
 				$project_array[$row] =  array(
-             		'project_namn' =>  substr($data[1], 0, -4),
+             		'project_namn' =>  $data[1],
              		'project_nr' => $data[2],
              		'project_status' => $data[3],
              		'timmar' => $tim,
@@ -434,7 +434,7 @@ if($_FILES['myfile']['error'] == 0){
 
 
 $my_post = array(
-  'post_title'    => wp_strip_all_tags( $vecka ),
+  'post_title'    => wp_strip_all_tags( substr($vecka, 0, -4)  ),
   'post_status'   => 'publish',
   'post_author'   => 1,
 );

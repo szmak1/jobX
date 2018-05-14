@@ -58,6 +58,80 @@ class Lista extends Component {
 				//console.log(medarbetare);
 				// const persons = res.data;
 			});
+
+		let new_user_list = [];
+		axios
+			.get(
+				`http://xapp.tst/wp-json/wp/v2/posts/` +
+					this.props.match.params.slug
+			)
+			.then(res => {
+				//console.log(res);
+				// const persons = res.data;
+
+				//this.setState({ posts: res.data.acf.projekt });
+				let arry = res.data.acf.projekt;
+				
+				//let clicked_user = this.props.match.params.user;
+				//console.log('1' ,arry )
+				for (var i = arry.length - 1; i >= 0; i--) {
+					for (var j = arry[i].timmar.length - 1; j >= 0; j--) {
+						let obj = arry[i].timmar[j];
+
+						Object.keys(obj).forEach(function(key) {
+							let new_ob = obj[key];
+
+							if (Array.isArray(obj[key])) {
+								for (var x = obj[key].length - 1; x >= 0; x--) {
+									
+										if (
+											Array.isArray(
+												new_user_list[
+													arry[i].project_namn
+												]
+											)
+										) {
+										} else {
+											new_user_list[
+												arry[i].project_namn
+											] = [];
+											if (
+												Array.isArray(
+													new_user_list[
+														arry[i].project_namn
+													][key]
+												)
+											) {
+											} else {
+												new_user_list[
+													arry[i].project_namn
+												][key] = [];
+											}
+										}
+
+										new_user_list[arry[i].project_namn][
+											key
+										] =+
+											obj[key][x].timmar;
+
+										new_user_list[arry[i].project_namn][
+											"status"
+										] =
+											arry[i]["project_status"];
+										new_user_list[arry[i].project_namn][
+											"nr"
+										] =
+											arry[i]["project_nr"];
+									
+								}
+							}
+						});
+					}
+				}
+			});
+			console.log(new_user_list);
+
+
 	}
 	goToMedarbetare(medarbetare_id, bild, e) {
 		let url = this.props.history.location;
