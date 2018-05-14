@@ -275,7 +275,7 @@ class Medarbetare extends Component {
 				<textarea ref="textarea" value={this.state.todos} onChange= {(e) => this.setState({ todos: e.target.value })}>
 
 				</textarea>
-				<button onClick={this.save_todos} >Save</button>
+				<button className="saveButton" onClick={this.save_todos} ><h4>Save</h4></button>
 					{/*<Todo post_key={this.props.match.params.slug} person_key={this.props.match.params.user} />*/}
 				</Footer>
 			</div>

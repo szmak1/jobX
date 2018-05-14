@@ -1,14 +1,15 @@
 .Footer {
 	background: $black;
 	color: $yellow;
-  margin-top: 16px;
+ 
 }
 textarea {
     overflow: auto;
-    width: 60%;
-    
+    width: 100%;
+    height: 70%;
+    box-sizing: border-box;
     background: none;
-    border: 2px solid $red;
+    border: 2px solid $yellow;
     color: $yellow;
    
 }

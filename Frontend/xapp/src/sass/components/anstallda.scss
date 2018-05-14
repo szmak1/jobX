@@ -8,7 +8,6 @@
 
 .anstallda {
   grid-area: anstallda;
-  padding-top: 40px;
 }
 
 .wrapThemNow{
@@ -21,6 +20,7 @@
 .Medarbetare-grid {
   min-height: 100vh;
   display: grid;
+  grid-gap: 16px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 100px 3fr 1fr;
   grid-template-areas: 

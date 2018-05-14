@@ -9,7 +9,7 @@ class Header extends Component {
 	render() {
 		return (
 			<div className={"Header"}>
-				<Link className="btn" to="/">
+				<Link className="testtt" to="/">
 					<img src="/img/Guts&Glory_VIT.svg" alt="" className="tes" />
 				</Link>
 			</div>
