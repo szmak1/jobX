@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import Asside2 from "../components/Asside2";
 import Anstallda from "../components/Anstallda";
+import config from "../config/config";
 import Footer from "../components/Footer";
 import Projects from "../components/Projects";
 import ProjectName from "../components/ProjectName";
@@ -36,7 +37,7 @@ class Lista extends Component {
 		let that = this;
 
 		axios
-			.get("http://xapp.tst/wp-json/wp/v2/acf/options", {
+			.get(config.api_url + "/wp-json/wp/v2/acf/options", {
 				headers: {
 					"content-type": "application/json"
 				}
@@ -65,7 +66,7 @@ class Lista extends Component {
 		let new_user_list = [];
 		axios
 			.get(
-				`http://xapp.tst/wp-json/wp/v2/posts/` +
+				config.api_url + "/wp-json/wp/v2/posts/" +
 					this.props.match.params.slug
 			)
 			.then(res => {

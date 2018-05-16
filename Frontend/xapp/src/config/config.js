@@ -1,5 +1,5 @@
 let config = {
-	api_url: "http://xapp.tst/wp-json/wp/v2/posts/",
+	api_url: "http://xapp.tst/",
 
 	
 	

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import config from "../config/config";
 import Header from "../components/Header";
 import List from "../components/List";
 import Footer from "../components/Footer";
@@ -18,7 +19,7 @@ class Home extends Component {
 
 	}
 	componentDidMount() {
-		axios.get(`http://xapp.tst/wp-json/wp/v2/posts`).then(res => {
+		axios.get(config.api_url + "/wp-json/wp/v2/posts").then(res => {
 			console.log(res);
 			// const persons = res.data;
 			this.setState({ posts: res.data });

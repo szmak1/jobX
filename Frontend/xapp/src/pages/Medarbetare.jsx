@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import config from "../config/config";
 import Header from "../components/Header";
 import Asside from "../components/Asside";
 import Footer from "../components/Footer";
@@ -33,7 +34,7 @@ class Medarbetare extends Component {
 		let that = this;
 		axios
 			.get(
-				`http://xapp.tst/wp-json/wp/v2/posts/` +
+				config.api_url + "/wp-json/wp/v2/posts/" +
 					this.props.match.params.slug
 			)
 			.then(res => {
@@ -102,6 +103,9 @@ class Medarbetare extends Component {
 				//end of all loops
 				//console.log('1' ,new_user_list )
 				this.setState({ projekt_list: new_user_list });
+
+				
+
 				Object.keys(new_user_list).map(function(key) {
 					//console.log(new_user_list);
 					{
@@ -194,7 +198,7 @@ class Medarbetare extends Component {
 			});
 
 			axios
-			.get(`http://xapp.tst/wp-json/todo/v1/get-all-todos/`+ this.props.match.params.slug + '/' +  this.props.match.params.user)
+			.get(config.api_url + "/wp-json/todo/v1/get-all-todos/" + this.props.match.params.slug + '/' +  this.props.match.params.user)
 			.then(res => {
 				console.log('res',res);
 				// const persons = res.data;
@@ -210,7 +214,7 @@ class Medarbetare extends Component {
 		};
 		console.log('todos',this.state.todos);
 		axios
-			.post(`http://xapp.tst/wp-json/todo/v1/save/`+ this.props.match.params.slug + '/' + this.props.match.params.user , params)
+			.post(config.api_url + "/wp-json/todo/v1/save/" + this.props.match.params.slug + '/' + this.props.match.params.user , params)
 			.then(res => {
 				
 				// const persons = res.data;
