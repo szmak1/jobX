@@ -9,6 +9,9 @@
 .anstallda {
   grid-area: anstallda;
 }
+.Asside {
+  grid-area: Asside;
+}
 
 .wrapThemNow{
  width: 100%;
@@ -25,8 +28,8 @@
   grid-template-rows: 100px 3fr 1fr;
   grid-template-areas: 
     "Header Header Header Header"
-    "anstallda anstallda anstallda anstallda"
-    "Footer Footer Footer Footer";
+    "Asside anstallda anstallda anstallda"
+    "Asside Footer Footer Footer";
 }
 
 

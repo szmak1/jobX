@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
+import Asside2 from "../components/Asside2";
 import Anstallda from "../components/Anstallda";
 import Footer from "../components/Footer";
 import Projects from "../components/Projects";
@@ -24,7 +25,9 @@ class Lista extends Component {
 		this.state = {
 			loading: false,
 			medarbetare: [],
-			kitchen: ""
+			kitchen: "",
+			new_user_list: [],
+			projekt_list: []
 		};
 	}
 	componentDidMount() {
@@ -71,7 +74,7 @@ class Lista extends Component {
 
 				//this.setState({ posts: res.data.acf.projekt });
 				let arry = res.data.acf.projekt;
-				
+
 				//let clicked_user = this.props.match.params.user;
 				//console.log('1' ,arry )
 				for (var i = arry.length - 1; i >= 0; i--) {
@@ -129,7 +132,12 @@ class Lista extends Component {
 					}
 				}
 			});
-			console.log(new_user_list);
+			
+				this.setState({ projekt_list: new_user_list });
+			//TODO
+			//SET state
+			//aside visa alla projekt + timmarna
+			// console.log(projekt_list);
 
 
 	}
@@ -144,9 +152,29 @@ class Lista extends Component {
 	}
 	render() {
 		let that = this;
+		
 		return (
 			<div className="Medarbetare-grid">
 				<Header history={this.props.history} />
+				<Asside2>
+					{Object.keys(this.state.projekt_list).map(function(key) {
+						
+						return (
+							<div>
+								<h4 key={key} className="AssideProjects">
+									{" "}
+									{key} - {that.state.projekt_list[key]["nr"]}{" "}
+								</h4>
+								<p>
+									{" "}
+									{
+										that.state.projekt_list[key]["status"]
+									}{" "}
+								</p>
+							</div>
+						);
+					})}
+				</Asside2>
 				<Anstallda>
 					{this.state.medarbetare.map(function(post) {
 						//console.log(post);
