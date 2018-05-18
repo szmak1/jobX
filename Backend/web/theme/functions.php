@@ -180,45 +180,6 @@ class Site extends TimberSite {
 
 
 }
-
-
-/**
- * Layout Styles
- */
-$layout_styles = function ($styles) {
-	$styles['Columns'] = array(
-		'row--cols-2' => 'Two Columns',
-		'row--cols-3' => 'Three Columns',
-		'row--cols-4' => 'Four Columns'
-	);
-
-	return $styles;
-};
-
-add_filter('acf/section/styles/layout', $layout_styles);
-
-
-$section_styles = function ($styles) {
-	$styles['Spacing'] = array(
-		'section--no-padding' => 'Remove Spacing',
-	);
-
-	return $styles;
-};
-
-add_filter('acf/section/styles/section', $section_styles);
-
-
-/**
- * @param \PHPMailer $phpmailer
- */
-function disableTLS($phpmailer){
-    // Disable the automatic TLS encryption added in PHPMailer v5.2.10 (9da56fc1328a72aa124b35b738966315c41ef5c6)
-    $phpmailer->SMTPAutoTLS = false;
-}
-add_action( 'phpmailer_init', 'disableTLS' );
-
-
 //remove wp-embed.min.js
 add_action( 'init', function() {
 
@@ -236,59 +197,7 @@ add_action( 'init', function() {
     remove_action('wp_head', 'wp_oembed_add_host_js');
 }, PHP_INT_MAX - 1 );
 
-function the_breadcrumb() {
-	global $post;
-	//dont show on search page & single shops
-	if (is_search() || is_front_page() ) {
-		return;
-	}
-	if($post && get_post_meta($post->ID, 'hide_breadcrumb', true) == FALSE) {
-		echo '<div class="breadcrumbs"><span>' . __('You are here', 'site') . ':</span><ul>';
-		if (!is_front_page()) {
-			echo '<li><a href="';
-			echo get_option('home');
-			echo '">';
-			echo __('Home', 'site');
-			echo '</a></li><li class="separator">›</li>';
-			if (is_category() || is_single()) {
-				echo '<li>';
-				if (is_single()) {
-					echo get_post_type( $post );
-				}
-				the_category(' </li><li class="separator">›</li><li> ');
-				if (is_single()) {
-					echo '</li><li class="separator">›</li><li class="active">';
-					the_title();
-					echo '</li>';
-				}
-			} elseif (is_page()) {
-				if($post->post_parent){
-					$anc = get_post_ancestors( $post->ID );
-					$title = get_the_title();
-					foreach ( $anc as $ancestor ) {
-						$output = '<li><a href="'.get_permalink($ancestor).'" title="'.get_the_title($ancestor).'">'.get_the_title($ancestor).'</a></li> <li class="separator">›</li>';
-					}
-					echo $output;
-					echo '<li class="active" title="'.$title.'"> '.$title.'</li>';
-				} else {
-					echo '<li class="active">'.get_the_title().'</li>';
-				}
-			}
-		}
-		elseif (is_tag()) {single_tag_title();}
-		elseif (is_day()) {echo"<li>Archive for "; the_time('F jS, Y'); echo'</li>';}
-		elseif (is_month()) {echo"<li>Archive for "; the_time('F, Y'); echo'</li>';}
-		elseif (is_year()) {echo"<li>Archive for "; the_time('Y'); echo'</li>';}
-		elseif (is_author()) {echo"<li>Author Archive"; echo'</li>';}
-		elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {echo "<li>Blog Archives"; echo'</li>';}
-		elseif (is_search()) {echo"<li>Search Results"; echo'</li>';}
-		elseif(is_front_page()){
-			echo "<li> " . __('Home', 'site') . " </li>";
-		}
-		echo '</ul>';
-		echo '</div>';
-	}
-}
+
 new Site();
 
 
@@ -338,10 +247,10 @@ if($_FILES['myfile']['error'] == 0){
             while(($data = fgetcsv($handle, 1000, ';')) !== FALSE) {
              	
                 if ( $data[0] == "Total" ) {
-                	$is_last_line = true;
+                	$is_last_line = true; //stop reading when see a TOTAL
                 }
                 if ($is_last_line) {
-                	break;
+                	break;//stop reading when see a TOTAL
                 }
                 if ($data[0] == "NB") {
                 	$projekt_nr_remember = "NB";
@@ -372,7 +281,7 @@ if($_FILES['myfile']['error'] == 0){
 
                 $tim = array();
                 $tim[$row] = array(); 
-
+                //save to wp
 				$project_array[$row] =  array(
              		'project_namn' =>  $data[1],
              		'project_nr' => $data[2],
@@ -430,11 +339,8 @@ if($_FILES['myfile']['error'] == 0){
         }
     }
 }
-
-
-
 $my_post = array(
-  'post_title'    => wp_strip_all_tags( substr($vecka, 0, -4)  ),
+  'post_title'    => wp_strip_all_tags( substr($vecka, 0, -4)  ), // remove the .cvs extentions
   'post_status'   => 'publish',
   'post_author'   => 1,
 );
@@ -462,7 +368,7 @@ for ($i=0; $i < count($alla); $i++) {
 		$other[] = $alla[$i];
 	}
  }
-
+//shuffle so you get a random
 shuffle($other);
 
  if (count($other) == 1 && count($other) !== 0){
@@ -496,9 +402,6 @@ echo "<h1>Upload Done</h1>";
 
 // Return all todos for 
 function get_all_todos($data) {
-	
-	//print_r($data['slug']);
-	//$all_post_ids = Timber::get_post();
 	$arry =  [];
 	$all_post_ids = get_field( "todos", $data['id'] );
 
@@ -507,8 +410,6 @@ function get_all_todos($data) {
 		if ($all_post_ids[$i]['id'] == $data['slug']) {
 			$all_post_ids[$i]['todos'] = $all_post_ids[$i]['todos'];
 			$arry= $all_post_ids[$i];
-
-
 		}
 	}
 
@@ -532,120 +433,30 @@ function save_todos( WP_REST_Request $request) {
 	$body = $request->get_body();
 	$body = json_decode($body,true);
 	$todo = $body['todo'];
-
 	$arry =  [];
 	$all_post_ids = get_field( "todos", $request['id'] );
 
-	
-
-
-		for ($i=0; $i < count($all_post_ids) ; $i++) { 
-			
-
-			 if ($all_post_ids[$i]['id'] == $request['slug']) {
-			 	$all_post_ids[$i]['todos'] = $todo;
-			 	$arry = array('done');
-			 }
-		}
-
+	for ($i=0; $i < count($all_post_ids) ; $i++) { 
+		
+		 if ($all_post_ids[$i]['id'] == $request['slug']) {
+		 	$all_post_ids[$i]['todos'] = $todo;
+		 	$arry = array('done');
+		 }
+	}
 
 	if (empty( $arry ) ) {
 		$all_post_ids[]= array('id' =>  $request['slug'], 'todos' => $todo);
 	}
 	
-
 	update_field('todos', $all_post_ids, $request['id']);
-
 	return $all_post_ids;
 	
-
-	//update_sub_field( $selector, $value, $post_id );
-	
 }
+
+//custom API end point to save todos
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'todo/v1', '/save/(?P<id>\d+)/(?P<slug>\w+)', array(
 		'methods' => 'POST',
 		'callback' => 'save_todos',
 	) );
 } );
-
-
-
-/*
-	
-// custom 
-
-add_action( 'init', 'handlare_register' );   
-
-function handlare_register() {   
-
-    $labels = array( 
-        'name' => _x('Handlare', 'post type general name'), 
-        'singular_name' => _x('Handlare Item', 'post type singular name'), 
-    );   
-
-    $args = array( 
-        'labels' => $labels, 
-        'public' => true, 
-        'publicly_queryable' => true, 
-        'show_ui' => true, 
-        'query_var' => true, 
-        'rewrite' => array( 'slug' => 'work', 'with_front'=> false ), 
-        'capability_type' => 'post', 
-        'hierarchical' => true,
-        'has_archive' => true,  
-        'menu_position' => null, 
-        'supports' => array('title','editor','thumbnail','revisions') 
-    );   
-
-    register_post_type( 'work' , $args ); 
-
-    register_taxonomy( 'categories', array('work'), array(
-        'hierarchical' => true, 
-        'label' => 'Categories', 
-        'singular_label' => 'Category', 
-        'rewrite' => array( 'slug' => 'categories', 'with_front'=> false )
-        )
-    );
-
-    register_taxonomy_for_object_type( 'categories', 'work' );
-
-}
-*/
-
-add_action("wp_ajax_medarbetare_name", "medarbetare_name");
-add_action("wp_ajax_nopriv_medarbetare_name", "medarbetare_name");
-
-function medarbetare_name() {
-
-
-// Allow from any origin
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-    // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
-    // you want to allow, and if so:
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header('Access-Control-Allow-Credentials: true');
-    header('Access-Control-Max-Age: 86400');    // cache for 1 day
-}
-
-// Access-Control headers are received during OPTIONS requests
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-        // may also be using PUT, PATCH, HEAD etc
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
-
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-
-    exit(0);
-}
-
-
-$options = get_fields('option');
-$medarbetare = $options['medarbetare'];
-
-echo(json_encode($arr));
-die;
-
-}
