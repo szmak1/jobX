@@ -79,6 +79,7 @@ class Lista extends Component {
 
 				//let clicked_user = this.props.match.params.user;
 				//console.log('1' ,arry )
+
 				for (var i = arry.length - 1; i >= 0; i--) {
 					for (var j = arry[i].timmar.length - 1; j >= 0; j--) {
 						let obj = arry[i].timmar[j];
@@ -133,10 +134,11 @@ class Lista extends Component {
 						});
 					}
 				}
+				
 				this.setState({ projekt_list: new_user_list });
 
 			});
-			console.log(new_user_list);
+			
 				
 			//TODO
 			//SET state
@@ -164,6 +166,8 @@ class Lista extends Component {
 				<div className="allaProjektos">
 				<h5>Alla Projekt</h5>
 				</div>
+				<div className="projekt_list">
+
 					{Object.keys(this.state.projekt_list).map(function(key) {
 						
 				
@@ -215,6 +219,7 @@ class Lista extends Component {
 							</div>
 						);
 					})}
+					</div>
 				</Asside2>
 				<Anstallda>
 					{this.state.medarbetare.map(function(post) {

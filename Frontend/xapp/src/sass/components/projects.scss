@@ -95,3 +95,7 @@
 	margin: 16px 4px 0 4px;
 	color: $black;
 }
+.projekt_list {
+    display: flex;
+    flex-direction: column-reverse;
+}
