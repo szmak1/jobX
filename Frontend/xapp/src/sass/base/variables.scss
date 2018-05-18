@@ -113,6 +113,7 @@ $hover: green, gray, blue, purple, $yellow, red, orange;
 @for $i from 1 through length($hover) {
   .lista-style:hover:nth-child(#{length($hover)}n+#{$i}) {
     background: lighten(nth($hover, $i), 20%);
+    cursor: pointer;
   }
 }
 
