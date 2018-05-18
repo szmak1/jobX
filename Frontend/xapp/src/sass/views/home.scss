@@ -53,6 +53,7 @@ a.testtt {
 
 .Header {
   grid-area: Header;
+  height: 100px;
 }
 .Projects {
   grid-area: Projects;
@@ -70,12 +71,14 @@ a.testtt {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 100px 5fr 3fr;
-   grid-gap: 20px;
+      grid-gap: 16px;
   grid-template-areas: 
     "Header Header Header Header"
     "Asside Projects Projects Projects"
     "Asside Footer Footer Footer";
 }
+
+
 .Avatar {
   width: 100%;
 
