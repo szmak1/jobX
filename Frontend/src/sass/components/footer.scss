@@ -13,7 +13,11 @@ textarea {
     color: $yellow;
     border-bottom: 0;
     padding: 8px;
+    display: block;
    
+}
+*:focus {
+    outline: none;
 }
 .saveButton {
   background: #FFF200;

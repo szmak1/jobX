@@ -3,8 +3,6 @@ import axios from "axios";
 import config from "../config/config";
 import Header from "../components/Header";
 import List from "../components/List";
-import Footer from "../components/Footer";
-import Veckor from "../components/Veckor";
 
 class Home extends Component {
 	constructor(props) {

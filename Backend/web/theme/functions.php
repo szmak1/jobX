@@ -488,6 +488,7 @@ update_field('current', json_encode($current) , 'option');
 //$done
 update_field('done', json_encode($done) , 'option');
 
+echo "<h1>Upload Done</h1>";
 
  die;
 }

@@ -4,18 +4,7 @@ import Asside2 from "../components/Asside2";
 import Anstallda from "../components/Anstallda";
 import config from "../config/config";
 import Footer from "../components/Footer";
-import Projects from "../components/Projects";
-import ProjectName from "../components/ProjectName";
 import axios from "axios";
-// class Medarbetare2 extends Component {
-// 	constructor(props) {
-// 		super(props);
-// 	}
-// 	toggleHidden () {
-//     this.setState({
-//       isHidden: !this.state.isHidden
-//     })
-//   }
 
 class Lista extends Component {
 	constructor(props) {
@@ -48,104 +37,68 @@ class Lista extends Component {
 				console.log();
 				that.setState({ medarbetare: medarbetare });
 				that.setState({ kitchen: res.data.current });
-
-				// let medarbetare_bild = res.data.medarbetare_bild;
-				// that.setState({ medarbetare_bild: medarbetare_bild});
-				// console.log(medarbetare_bild);
-
-				// let medarbetare_titel = res.data.medarbetare_titel;
-				// that.setState({ medarbetare_titel: medarbetare_titel});
-				// setter
-				//localStorage.setItem('medarbetare_titel', medarbetare_titel);
-
-				// getter
-
-				//console.log(medarbetare);
-				// const persons = res.data;
 			});
 
 		let new_user_list = [];
 		axios
 			.get(
-				config.api_url + "/wp-json/wp/v2/posts/" +
+				config.api_url +
+					"/wp-json/wp/v2/posts/" +
 					this.props.match.params.slug
 			)
 			.then(res => {
-				//console.log(res);
-				// const persons = res.data;
-
-				//this.setState({ posts: res.data.acf.projekt });
 				let arry = res.data.acf.projekt;
-
-				//let clicked_user = this.props.match.params.user;
-				//console.log('1' ,arry )
 
 				for (var i = arry.length - 1; i >= 0; i--) {
 					for (var j = arry[i].timmar.length - 1; j >= 0; j--) {
 						let obj = arry[i].timmar[j];
 
 						Object.keys(obj).forEach(function(key) {
-							let new_ob = obj[key];
+							//let new_ob = obj[key];
 
 							if (Array.isArray(obj[key])) {
 								for (var x = obj[key].length - 1; x >= 0; x--) {
-									
+									if (
+										Array.isArray(
+											new_user_list[arry[i].project_namn]
+										)
+									) {
+									} else {
+										new_user_list[
+											arry[i].project_namn
+										] = [];
 										if (
 											Array.isArray(
 												new_user_list[
 													arry[i].project_namn
-												]
+												][key]
 											)
 										) {
 										} else {
-											new_user_list[
-												arry[i].project_namn
+											new_user_list[arry[i].project_namn][
+												key
 											] = [];
-											if (
-												Array.isArray(
-													new_user_list[
-														arry[i].project_namn
-													][key]
-												)
-											) {
-											} else {
-												new_user_list[
-													arry[i].project_namn
-												][key] = [];
-											}
 										}
+									}
 
-										new_user_list[arry[i].project_namn][
-											key
-										] =+
-											obj[key][x].timmar;
+									new_user_list[arry[i].project_namn][
+										key
+									] = +obj[key][x].timmar;
 
-										new_user_list[arry[i].project_namn][
-											"status"
-										] =
-											arry[i]["project_status"];
-										new_user_list[arry[i].project_namn][
-											"nr"
-										] =
-											arry[i]["project_nr"];
-									
+									new_user_list[arry[i].project_namn][
+										"status"
+									] =
+										arry[i]["project_status"];
+									new_user_list[arry[i].project_namn]["nr"] =
+										arry[i]["project_nr"];
 								}
 							}
 						});
 					}
 				}
-				
+
 				this.setState({ projekt_list: new_user_list });
-
 			});
-			
-				
-			//TODO
-			//SET state
-			//aside visa alla projekt + timmarna
-			// console.log(projekt_list);
-
-
 	}
 	goToMedarbetare(medarbetare_id, bild, e) {
 		let url = this.props.history.location;
@@ -158,67 +111,63 @@ class Lista extends Component {
 	}
 	render() {
 		let that = this;
-		
+
 		return (
 			<div className="Medarbetare-grid2">
 				<Header history={this.props.history} />
 				<Asside2>
-				<div className="allaProjektos">
-				<h5>Alla Projekt</h5>
-				</div>
-				<div className="projekt_list">
-
-					{Object.keys(this.state.projekt_list).map(function(key) {
-						
-				
-						return (
-							<div className="asside2Background">
-
-								<h4 key={key} className="AssidePro">
-									{" "}
-									{key} - {that.state.projekt_list[key]["nr"]}{" "}
-								</h4>
-								<p className="statusAsside">
-									{" "}
-									{
-										that.state.projekt_list[key]["status"]
-									}{" "}
-								</p>
-								<p className="weekAsside">
-									<div>
-									{"M: "}
-									{
-										that.state.projekt_list[key]["m"]
-									}{"h "}
-									</div>
-									<div>
-									{"T: "}
-									{
-										that.state.projekt_list[key]["t"]
-									}{"h "}
-									</div>
-									<div>
-									{"O: "}
-									{
-										that.state.projekt_list[key]["o"]
-									}{"h "}
-									</div>
-									<div>
-									{"TH: "}
-									{
-										that.state.projekt_list[key]["th"]
-									}{"h "}
-									</div>
-									<div>
-									{"F: "}
-									{
-										that.state.projekt_list[key]["f"]
-									}{"h "}
-									</div>
-								</p>
-							</div>
-						);
-					})}
+					<div className="allaProjektos">
+						<h5>Alla Projekt</h5>
+					</div>
+					<div className="projekt_list">
+						{Object.keys(this.state.projekt_list).map(function(
+							key
+						) {
+							return (
+								<div className="asside2Background">
+									<h4 key={key} className="AssidePro">
+										{" "}
+										{key} -{" "}
+										{that.state.projekt_list[key]["nr"]}{" "}
+									</h4>
+									<p className="statusAsside">
+										{" "}
+										{
+											that.state.projekt_list[key][
+												"status"
+											]
+										}{" "}
+									</p>
+									<p className="weekAsside">
+										<div>
+											{"M: "}
+											{that.state.projekt_list[key]["m"]}
+											{"h "}
+										</div>
+										<div>
+											{"T: "}
+											{that.state.projekt_list[key]["t"]}
+											{"h "}
+										</div>
+										<div>
+											{"O: "}
+											{that.state.projekt_list[key]["o"]}
+											{"h "}
+										</div>
+										<div>
+											{"TH: "}
+											{that.state.projekt_list[key]["th"]}
+											{"h "}
+										</div>
+										<div>
+											{"F: "}
+											{that.state.projekt_list[key]["f"]}
+											{"h "}
+										</div>
+									</p>
+								</div>
+							);
+						})}
 					</div>
 				</Asside2>
 				<Anstallda>
@@ -251,10 +200,9 @@ class Lista extends Component {
 				</Anstallda>
 				<Footer>
 					<div className="kitchenHeader">
-					<h5>Köksvecka</h5>
+						<h5>Köksvecka</h5>
 					</div>
 					<div className="kitchen">{this.state.kitchen}</div>
-					
 				</Footer>
 			</div>
 		);

@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import config from "../config/config";
 import Header from "../components/Header";
 import Asside from "../components/Asside";
 import Footer from "../components/Footer";
-import Todo from "../components/Todo";
-import TodoInput from "../components/TodoInput";
-import TodoItem from "../components/TodoItem";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 class Medarbetare extends Component {
 	constructor(props) {
@@ -26,10 +24,8 @@ class Medarbetare extends Component {
 			todos:""
 		};
 		this.save_todos = this.save_todos.bind(this);
-		this.handleChange = this.handleChange(this);
 	}
 	componentDidMount() {
-		//console.log(this.props.match.params.slug);
 		// get ajax
 		let that = this;
 		axios
@@ -38,9 +34,6 @@ class Medarbetare extends Component {
 					this.props.match.params.slug
 			)
 			.then(res => {
-				//console.log(res);
-				// const persons = res.data;
-
 				this.setState({ posts: res.data.acf.projekt });
 				let arry = res.data.acf.projekt;
 				let new_user_list = [];
@@ -51,11 +44,11 @@ class Medarbetare extends Component {
 						let obj = arry[i].timmar[j];
 
 						Object.keys(obj).forEach(function(key) {
-							let new_ob = obj[key];
+							//let new_ob = obj[key];
 
 							if (Array.isArray(obj[key])) {
 								for (var x = obj[key].length - 1; x >= 0; x--) {
-									if (obj[key][x].person == clicked_user) {
+									if (obj[key][x].person === clicked_user) {
 										if (
 											Array.isArray(
 												new_user_list[
@@ -107,10 +100,7 @@ class Medarbetare extends Component {
 				
 
 				Object.keys(new_user_list).map(function(key) {
-					//console.log(new_user_list);
-					{
-						/* loopa timar per project*/
-					}
+					
 					Object.keys(new_user_list[key]).map(function(key2) {
 						let value = new_user_list[key][key2];
 						//console.log()
@@ -193,6 +183,7 @@ class Medarbetare extends Component {
 								new_state = [...state, f];
 								that.setState({ f: new_state });
 						}
+
 					});
 				});
 			});
@@ -207,27 +198,22 @@ class Medarbetare extends Component {
 
 	}
 	save_todos(){
-		console.log(1);
 		const params = { 
 			todo: this.state.todos
 
 		};
-		console.log('todos',this.state.todos);
 		axios
 			.post(config.api_url + "/wp-json/todo/v1/save/" + this.props.match.params.slug + '/' + this.props.match.params.user , params)
 			.then(res => {
 				
-				// const persons = res.data;
-				//this.setState({ posts: res.data });
+				toast.success("Sparat!", {
+		      		position: toast.POSITION.BOTTOM_RIGHT
+		    	});
 			});
 	}
-	handleChange(event){
-		 //this.setState({todos: event.target.value});
-	}
+	
 	render() {
 		let that = this;
-		let days;
-
 		return (
 			<div className="home-grid">
 				<Header history={this.props.history} />
@@ -280,8 +266,8 @@ class Medarbetare extends Component {
 
 				</textarea>
 				<button className="saveButton" onClick={this.save_todos} ><h4>Save</h4></button>
-					{/*<Todo post_key={this.props.match.params.slug} person_key={this.props.match.params.user} />*/}
-				</Footer>
+					</Footer>
+				<ToastContainer />
 			</div>
 		);
 	}
