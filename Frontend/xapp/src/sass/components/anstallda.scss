@@ -31,13 +31,24 @@
     "Asside anstallda anstallda anstallda"
     "Asside Footer Footer Footer";
 }
+.Medarbetare-grid2 {
+  min-height: 100vh;
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 100px 3fr 1fr;
+  grid-template-areas: 
+    "Header Header Header Header"
+    "Asside anstallda anstallda anstallda"
+    "Asside Footer Footer Footer";
+}
 
 
 .container2 {
    display: flex;
    align-items: center;
    justify-content: center;
-   color: $black;
+   color: $gray-light;
    flex-direction: column;
 
 @extend %v_c;
@@ -63,7 +74,7 @@
     transition: 0.3s;
     width: 100%;
     height: 100%;
-    background: white;
+    background: $black;
     
     display: flex;
    
@@ -75,9 +86,13 @@
 /* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    background: #CCCCCC;
+    background: $gray-darkest;
+    color: black;
 }
 
+.containder:hover > h3 {
+  color: black;
+}
 /* Add some padding inside the card container */
 .container {
    display: flex;

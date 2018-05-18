@@ -15,7 +15,7 @@ class Asside2 extends Component {
 		return (
 			<div className={"Asside"}>
 
-				<div className="Asside-container">
+				<div className="Asside-container2">
 					
 					
 						{this.props.children}

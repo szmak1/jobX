@@ -1,5 +1,12 @@
+.Asside h5 {
+	color: white;
+	
+	
+  
+
+}
 .Asside {
-	background-color: $yellow;
+
 }
 
 .Asside-container {
@@ -10,8 +17,21 @@
   grid-template-areas: 
     "Asside-image Asside-image"
     "Asside-text Asside-text";
+  background: $yellow;
 }
+.Asside-container2 {
+ 
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  color:black;
+  grid-gap: 4px;
 
+  text-align: center;
+ 
+
+
+}
 .Asside-image {
 	grid-area: Asside-image;
 }
@@ -22,9 +42,25 @@
 	display: flex;
 	flex-direction: column;
 	text-align: center;
+
 }
 .AssideProjects {
-	padding-bottom: 12px;
+	padding: 8px;
+}
+.AssidePro {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	background: $black;
+	color: $gray-light;
+
+}
+.weekAsside {
+	background: $black;
+}
+.statusAsside {
+
+	color: $gray-light;
 }
 
 .projektHeadline {
@@ -35,11 +71,12 @@
 	color: $white;
 	background: $black;
 	height: 10%;
-	margin-bottom: 16px;
+	
 }
 
 .Avatar {
     display: block;
+    
 }
 
 .projektHeadline h3 {
@@ -47,6 +84,91 @@
     margin-bottom: 0;
 
 }
+.mandag {
+  grid-area: mandag;
+  
 
+}
+.tisdag {
+  grid-area: tisdag;
+
+
+}
+.onsdag {
+  grid-area: onsdag;
+  
+
+}
+.torsdag {
+  grid-area: torsdag;
+ 
+ 
+}
+.fredag {
+  grid-area: fredag;
+  
+
+}
+.weekAsside {
+  display: grid;
+  grid-gap: 8px;
+  height: auto;
+  padding-top: 8px;
+ 
+  
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "mandag tisdag onsdag torsdag fredag"
+}
+
+.weekAsside > div {
+    background: $yellow;
+}
+.asside2Background {
+
+    background-color: $black;
+    display: block;
+    width: 100%;
+    height: auto;
+   
+    padding: 8px;
+    box-sizing: border-box;
+
+}
+
+.allaProjektos {
+	width: 100%;
+	background: black;
+	height: 30px;
+	background: white;
+
+}
+.allaProjektos h5 {
+	color: $black;
+	font-size: 22px;
+	@extend %v_c;
+}
+
+.assPro {
+
+    display: block;
+    height: 70px;
+    background: black;
+    margin: 4px;
+    color: $gray-light;
+    padding: 8px;
+
+}
+.assPro h4 {
+
+
+
+}
+.assPro p {
+
+    
+
+}
 
 

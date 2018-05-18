@@ -31,6 +31,7 @@ class Lista extends Component {
 			projekt_list: []
 		};
 	}
+
 	componentDidMount() {
 		//console.log(this.props.match.params.slug);
 		// get ajax
@@ -132,9 +133,11 @@ class Lista extends Component {
 						});
 					}
 				}
-			});
-			
 				this.setState({ projekt_list: new_user_list });
+
+			});
+			console.log(new_user_list);
+				
 			//TODO
 			//SET state
 			//aside visa alla projekt + timmarna
@@ -155,22 +158,59 @@ class Lista extends Component {
 		let that = this;
 		
 		return (
-			<div className="Medarbetare-grid">
+			<div className="Medarbetare-grid2">
 				<Header history={this.props.history} />
 				<Asside2>
+				<div className="allaProjektos">
+				<h5>Alla Projekt</h5>
+				</div>
 					{Object.keys(this.state.projekt_list).map(function(key) {
 						
+				
 						return (
-							<div>
-								<h4 key={key} className="AssideProjects">
+							<div className="asside2Background">
+
+								<h4 key={key} className="AssidePro">
 									{" "}
 									{key} - {that.state.projekt_list[key]["nr"]}{" "}
 								</h4>
-								<p>
+								<p className="statusAsside">
 									{" "}
 									{
 										that.state.projekt_list[key]["status"]
 									}{" "}
+								</p>
+								<p className="weekAsside">
+									<div>
+									{"M: "}
+									{
+										that.state.projekt_list[key]["m"]
+									}{"h "}
+									</div>
+									<div>
+									{"T: "}
+									{
+										that.state.projekt_list[key]["t"]
+									}{"h "}
+									</div>
+									<div>
+									{"O: "}
+									{
+										that.state.projekt_list[key]["o"]
+									}{"h "}
+									</div>
+									<div>
+									{"TH: "}
+									{
+										that.state.projekt_list[key]["th"]
+									}{"h "}
+									</div>
+									<div>
+									{"F: "}
+									{
+										that.state.projekt_list[key]["f"]
+									}{"h "}
+									</div>
 								</p>
 							</div>
 						);
@@ -205,7 +245,11 @@ class Lista extends Component {
 					})}
 				</Anstallda>
 				<Footer>
+					<div className="kitchenHeader">
+					<h5>Köksvecka</h5>
+					</div>
 					<div className="kitchen">{this.state.kitchen}</div>
+					
 				</Footer>
 			</div>
 		);

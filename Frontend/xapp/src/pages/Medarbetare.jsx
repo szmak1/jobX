@@ -235,7 +235,7 @@ class Medarbetare extends Component {
 					{Object.keys(this.state.projekt_list).map(function(key) {
 						
 						return (
-							<div>
+							<div className="assPro">
 								<h4 key={key} className="AssideProjects">
 									{" "}
 									{key} - {that.state.projekt_list[key]["nr"]}{" "}
