@@ -140,29 +140,61 @@ class Lista extends Component {
 									</p>
 									<p className="weekAsside">
 										<div>
-											{"M: "}
-											{that.state.projekt_list[key]["m"]}
-											{"h "}
+											<div className="mondayM">
+												{"Måndag"}
+											</div>
+											<div calssName="mondayH">
+												{
+													that.state.projekt_list[
+														key
+													]["m"]
+												}
+												{""}
+											</div>
 										</div>
 										<div>
-											{"T: "}
-											{that.state.projekt_list[key]["t"]}
-											{"h "}
+											<div>{"Tisdag"}</div>
+											<div>
+												{
+													that.state.projekt_list[
+														key
+													]["t"]
+												}
+												{""}
+											</div>
 										</div>
 										<div>
-											{"O: "}
-											{that.state.projekt_list[key]["o"]}
-											{"h "}
+											<div>{"Onsdag"}</div>
+											<div>
+												{
+													that.state.projekt_list[
+														key
+													]["o"]
+												}
+												{""}
+											</div>
 										</div>
 										<div>
-											{"TH: "}
-											{that.state.projekt_list[key]["th"]}
-											{"h "}
+											<div>{"Torsdag"}</div>
+											<div>
+												{
+													that.state.projekt_list[
+														key
+													]["th"]
+												}
+												{""}
+											</div>
 										</div>
 										<div>
-											{"F: "}
-											{that.state.projekt_list[key]["f"]}
-											{"h "}
+											<div>{"Fredag"}</div>
+											<div>
+												{
+													that.state.projekt_list[
+														key
+													]["f"]
+												}
+												{""}
+											</div>
 										</div>
 									</p>
 								</div>

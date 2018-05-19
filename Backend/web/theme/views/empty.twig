@@ -1,20 +1,93 @@
 {% extends 'layouts/base.twig' %}
 
 {% block content %}
-
-	<section>
-		<div class="wrapper">
+	<div class="wrapper-x">
+	
+		
 		<h1>Project-Planner Uploader</h1>
 		<div class="upload-btn-wrapper">
 			<form action="{{ ajax_url }}"  method="post" enctype="multipart/form-data">
 				<input type="hidden" value="my_user_vote" name="action">
 	  			<button class="btn">Ladda upp CSV</button>
-	  			<button class="btn-o">Ladda upp</button>
+	  			<button class="btn-o">Skicka</button>
 	  			<input type="file" name="myfile" />
   			</form>
 		</div>
-		</div>
-	</section>
+	
+	
+	</div>
+
+	<style>
+	.wrapper-x {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    @extend %v_c;
+}
+body {
+display: block;
+height: 100vh;
+box-sizing: border-box;
+background: #333333;
+}
+
+#main {
+	    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    position: relative;
+   
+    width: 50%;
+    height: 34%;
+    
+    border-radius: 4px;
+}
+
+h1 {
+	color: white;
+    margin: 0 auto;
+    display: flex;
+    padding-top: 136px;
+}
+.btn-o {
+    z-index: 3;
+    position: relative;
+    border: 2px solid black;
+    color: black;
+    background-color: #fff200;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn {
+    border: 2px solid black;
+    color: black;
+    background-color: #FF8C00;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-o:hover {
+    background: #e0d700;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #FF9C00;
+    cursor: pointer;
+}
+
+
+	</style>
 	
 {% endblock %}
 

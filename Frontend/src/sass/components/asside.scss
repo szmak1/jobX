@@ -1,12 +1,7 @@
 .Asside h5 {
 	color: white;
-	
-	
-  
-
 }
 .Asside {
-
 }
 
 .Asside-container {
@@ -20,17 +15,12 @@
   background: $yellow;
 }
 .Asside-container2 {
- 
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   color:black;
-  grid-gap: 4px;
-
+  grid-gap: 8px;
   text-align: center;
- 
-
-
 }
 .Asside-image {
 	grid-area: Asside-image;
@@ -42,7 +32,6 @@
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-
 }
 .AssideProjects {
 	padding: 8px;
@@ -53,13 +42,11 @@
 	align-content: center;
 	background: $black;
 	color: $gray-light;
-
 }
 .weekAsside {
 	background: $black;
 }
 .statusAsside {
-
 	color: $gray-light;
 }
 
@@ -71,43 +58,27 @@
 	color: $white;
 	background: $black;
 	height: 10%;
-	
 }
-
 .Avatar {
-    display: block;
-    
+  display: block;
 }
-
 .projektHeadline h3 {
-    
-    margin-bottom: 0;
-
+  margin-bottom: 0;
 }
 .mandag {
   grid-area: mandag;
-  
-
 }
 .tisdag {
   grid-area: tisdag;
-
-
 }
 .onsdag {
   grid-area: onsdag;
-  
-
 }
 .torsdag {
   grid-area: torsdag;
- 
- 
 }
 .fredag {
   grid-area: fredag;
-  
-
 }
 .weekAsside {
   display: grid;
@@ -131,7 +102,7 @@
     display: block;
     width: 100%;
     height: auto;
-   
+    margin-bottom: 8px;
     padding: 8px;
     box-sizing: border-box;
 
@@ -139,9 +110,8 @@
 
 .allaProjektos {
 	width: 100%;
-	background: black;
 	height: 30px;
-	background: white;
+	background: $yellow;
 
 }
 .allaProjektos h5 {

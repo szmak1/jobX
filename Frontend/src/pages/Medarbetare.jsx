@@ -116,7 +116,7 @@ class Medarbetare extends Component {
 									<div className="cvsInformation">
 										<h4 className="projectName">{key}</h4>
 										<h4 className="projectTime">
-											{value}h
+											{value}
 										</h4>
 									</div>
 								);
@@ -130,7 +130,7 @@ class Medarbetare extends Component {
 									<div className="cvsInformation">
 										<h4 className="projectName">{key}</h4>
 										<h4 className="projectTime">
-											{value}h
+											{value}
 										</h4>
 									</div>
 								);
@@ -145,7 +145,7 @@ class Medarbetare extends Component {
 									<div className="cvsInformation">
 										<h4 className="projectName">{key}</h4>
 										<h4 className="projectTime">
-											{value}h
+											{value}
 										</h4>
 									</div>
 								);
@@ -160,7 +160,7 @@ class Medarbetare extends Component {
 									<div className="cvsInformation">
 										<h4 className="projectName">{key}</h4>
 										<h4 className="projectTime">
-											{value}h
+											{value}
 										</h4>
 									</div>
 								);
@@ -175,7 +175,7 @@ class Medarbetare extends Component {
 									<div className="cvsInformation">
 										<h4 className="projectName">{key}</h4>
 										<h4 className="projectTime">
-											{value}h
+											{value}
 										</h4>
 									</div>
 								);
