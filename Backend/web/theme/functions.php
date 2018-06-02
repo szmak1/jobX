@@ -200,11 +200,13 @@ add_action( 'init', function() {
 
 new Site();
 
+// Project Planner App back-end //
 
-add_action("wp_ajax_my_user_vote", "my_user_vote");
-add_action("wp_ajax_nopriv_my_user_vote", "my_user_vote");
+add_action("wp_ajax_get_csv_data", "get_csv_data");
+add_action("wp_ajax_nopriv_get_csv_data", "get_csv_data");
 
-function my_user_vote() {
+
+function get_csv_data() {
 
 $name = $_FILES['myfile']['name'];
 $vecka = $name;
